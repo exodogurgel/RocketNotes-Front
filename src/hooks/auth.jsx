@@ -38,11 +38,21 @@ function AuthProvider({ children }) {
     setData({}) // voltando o estado para vazio (tornando assim o user vazio)
   }
 
-  async function updateProfile({ user }) {
+  async function updateProfile({ user, avatarFile }) {
     try {
+
+      if (avatarFile) {
+        const fileUploadForm = new FormData(); // criando um arquivo Formulário
+        fileUploadForm.append("avatar", avatarFile);
+
+        const response = await api.patch("/users/avatar", fileUploadForm);
+        user.avatar = response.data.avatar;
+      }
+
       await api.put('/users', user);
       // subsitituindo os dados do local storage
       localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
+
       setData({ user, token: data.token });
       alert('Perfil atualizado.');
 
