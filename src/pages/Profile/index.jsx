@@ -26,13 +26,15 @@ export function Profile() {
   const [avatarFile, setAvatarFile] = useState(null); // aqui ira carregar a nova imagem selecionada pel usuário 
 
   async function handleUpdate() {
-    const user = {
+    const updated = {
       name,
       email,
       old_password: passwordOld,
       password: passwordNew,
     }
-    await updateProfile({ user, avatarFile });
+
+    const userUpdated = Object.assign(user, updated);
+    await updateProfile({ user: userUpdated, avatarFile });
   }
 
   function handleChangeAvatar(event) {
