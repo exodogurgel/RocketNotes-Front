@@ -17,6 +17,8 @@ import { Container, Form } from './styles';
 export function New() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  
+  const [loading, setLoading] = useState(false);
 
   const [links, setLinks] = useState([]);
   const [newLink, setNewLink] = useState("");
@@ -56,6 +58,8 @@ export function New() {
     if (newTag) {
       return alert("Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio");
     }
+
+    setLoading(true);
 
     await api.post("/notes", {
       title,
@@ -132,7 +136,8 @@ export function New() {
             </div>
           </Section>
           <Button
-            title="Salvar"
+            disabled={loading}
+            title={loading ? 'Salvando' : 'Salvar'}
             onClick={handleNewNote}
           />
         </Form>

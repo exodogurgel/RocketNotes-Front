@@ -13,6 +13,7 @@ export const Container = styled.header`
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   padding: 0 80px;
 `
@@ -49,7 +50,7 @@ export const Profile = styled(Link)`
   }
 `
 
-export const Logout = styled.button`
+export const Logout = styled(Link)`
   border: none;
   background: none;
 
