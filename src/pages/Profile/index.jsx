@@ -14,7 +14,7 @@ import { Container, Form, Avatar } from "./styles";
 
 
 export function Profile() {
-  const { user, updateProfile, loading, setLoading } = useAuth();
+  const { user, updateProfile, loading = false, setLoading } = useAuth();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
