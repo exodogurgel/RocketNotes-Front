@@ -40,6 +40,7 @@ function AuthProvider({ children }) {
     localStorage.removeItem("@rocketnotes:token");
 
     setData({}) // voltando o estado para vazio (tornando assim o user vazio)
+    setLoading(false);
   }
 
   async function updateProfile({ user, avatarFile }) {

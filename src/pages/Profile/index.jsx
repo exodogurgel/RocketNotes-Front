@@ -14,7 +14,7 @@ import { Container, Form, Avatar } from "./styles";
 
 
 export function Profile() {
-  const { user, updateProfile } = useAuth();
+  const { user, updateProfile, loading, setLoading } = useAuth();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -33,6 +33,7 @@ export function Profile() {
       password: passwordNew,
     }
 
+    setLoading(true);
     const userUpdated = Object.assign(user, updated);
     await updateProfile({ user: userUpdated, avatarFile });
   }
@@ -102,7 +103,11 @@ export function Profile() {
           onChange={e => setPasswordNew(e.target.value)}
         />      
 
-        <Button title="Salvar" onClick={handleUpdate}/>
+        <Button
+          disabled={loading}
+          title={loading ? 'Salvando...' : 'Salvar'} 
+          onClick={handleUpdate}
+          />
 
       </Form>
 
