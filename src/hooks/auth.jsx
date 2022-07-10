@@ -54,14 +54,12 @@ function AuthProvider({ children }) {
         user.avatar = response.data.avatar;
       }
 
-      setLoading(true);
       await api.put('/users', user);
       // substituindo os dados do local storage
       localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
 
       setData({ user, token: data.token });
       alert('Perfil atualizado.');
-      setLoading(false);
 
     }  catch (error) {
       if (error.response) {
